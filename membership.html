@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membership | GymFit</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+  .compare-table{ width:100%; border-collapse:collapse; }
+  .compare-table th, .compare-table td{ padding:20px 24px; text-align:center; border-bottom:1px solid var(--border); font-size:14px; }
+  .compare-table th{ color:var(--white); font-family:var(--font-head); font-size:20px; letter-spacing:1px; }
+  .compare-table td:first-child, .compare-table th:first-child{ text-align:left; color:var(--text-secondary); }
+  .compare-table td{ color:var(--text-secondary); }
+  .compare-table th.feat-col{ color:var(--text-secondary); font-family:var(--font-body); font-size:13px; text-transform:uppercase; letter-spacing:1px; }
+  .compare-table .yes{ color:var(--accent); font-weight:700; }
+  .compare-table .featured-col{ background:rgba(124,255,59,.06); }
+  @media (max-width:860px){ .compare-table{ display:block; overflow-x:auto; white-space:nowrap; } }
+</style>
+</head>
+<body>
+<div class="loader"><div class="loader-mark">GYMFIT</div><div class="loader-bar"></div></div>
+<div class="scroll-progress"></div>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">GYM<span>FIT</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="membership.html">Membership</a>
+      <a href="bmi.html">BMI</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="membership.html" class="nav-cta">Join Now</a>
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">No Contracts, No Surprises</span>
+    <h1>Membership Plans</h1>
+    <p>Pick a plan that matches your goals. Upgrade, downgrade, or cancel anytime.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="plans-row reveal-stagger">
+      <div class="plan-card lift">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price">₹1,499<sup>/mo</sup></div>
+        <div class="plan-cycle">Billed monthly</div>
+        <ul class="plan-feats">
+          <li>Full gym floor access</li>
+          <li>Locker facility</li>
+          <li>Free fitness assessment</li>
+          <li>Access to 3 group classes/mo</li>
+        </ul>
+        <a href="contact.html" class="btn btn-outline">Choose Plan</a>
+      </div>
+      <div class="plan-card featured lift">
+        <span class="plan-tag">Popular</span>
+        <div class="plan-name">Elite</div>
+        <div class="plan-price">₹2,999<sup>/mo</sup></div>
+        <div class="plan-cycle">Billed monthly</div>
+        <ul class="plan-feats">
+          <li>Everything in Basic</li>
+          <li>2 personal training sessions/mo</li>
+          <li>Nutrition consultation</li>
+          <li>Unlimited group classes</li>
+          <li>Recovery zone access</li>
+        </ul>
+        <a href="contact.html" class="btn btn-primary">Choose Plan</a>
+      </div>
+      <div class="plan-card lift">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">₹4,999<sup>/mo</sup></div>
+        <div class="plan-cycle">Billed monthly</div>
+        <ul class="plan-feats">
+          <li>Everything in Elite</li>
+          <li>Unlimited personal training</li>
+          <li>Priority equipment booking</li>
+          <li>Monthly body composition scan</li>
+          <li>Guest passes (2/mo)</li>
+        </ul>
+        <a href="contact.html" class="btn btn-outline">Choose Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head reveal"><div><span class="eyebrow">Details</span><h2>Full Plan Comparison</h2></div></div>
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="compare-table">
+        <tr><th class="feat-col">Feature</th><th>Basic</th><th class="featured-col">Elite</th><th>Pro</th></tr>
+        <tr><td>Gym floor access</td><td class="yes">✓</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Locker facility</td><td class="yes">✓</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Group classes</td><td>3 / month</td><td class="featured-col">Unlimited</td><td>Unlimited</td></tr>
+        <tr><td>Personal training</td><td>—</td><td class="featured-col">2 / month</td><td>Unlimited</td></tr>
+        <tr><td>Nutrition consult</td><td>—</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Recovery zone</td><td>—</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+        <tr><td>Body composition scan</td><td>—</td><td class="featured-col">—</td><td>Monthly</td></tr>
+        <tr><td>Guest passes</td><td>—</td><td class="featured-col">—</td><td>2 / month</td></tr>
+        <tr><td>Priority booking</td><td>—</td><td class="featured-col">—</td><td class="yes">✓</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal"><div><span class="eyebrow">Add-on</span><h2>Personal Training</h2></div></div>
+    <div class="why-grid reveal">
+      <div class="why-visual"><img src="https://images.unsplash.com/photo-1571731956672-f2b94d7dd0cb?auto=format&fit=crop&w=800&q=80" alt="Personal training"></div>
+      <div>
+        <p class="section-tag" style="margin-bottom:24px;">One-on-one coaching designed around your specific goals, schedule, and starting point. Available as a standalone add-on to any membership plan.</p>
+        <div class="floating-cards">
+          <div class="float-card"><b>₹899</b><small>Per Session</small></div>
+          <div class="float-card"><b>₹7,999</b><small>10-Session Pack</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="join-cta">
+  <div class="container reveal">
+    <h2 style="font-size:clamp(38px,6vw,80px);">PICK YOUR<br>PLAN TODAY.</h2>
+    <p>First session is free — come see the floor before you commit.</p>
+    <a href="contact.html" class="btn btn-primary">Get Started</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GYM<span>FIT</span></div>
+        <p class="footer-about">A premium strength & conditioning club built for people who take their training seriously.</p>
+        <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tw</a><a href="#">yt</a></div>
+      </div>
+      <div class="footer-col"><h5>Explore</h5><ul><li><a href="programs.html">Programs</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="membership.html">Membership</a></li><li><a href="nutrition.html">Nutrition</a></li></ul></div>
+      <div class="footer-col"><h5>Tools</h5><ul><li><a href="bmi.html">BMI Calculator</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li>123 Fitness Ave, Indore, MP</li><li>+91 98765 43210</li><li>hello@gymfit.com</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 GymFit. All rights reserved.</span><span>Designed for those who don't skip leg day.</span></div>
+  </div>
+</footer>
+
+<div class="back-top">↑</div>
+<script src="js/script.js"></script>
+</body>
+</html>

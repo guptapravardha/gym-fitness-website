@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator | GymFit</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+  .bmi-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+  .bmi-form-card{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; }
+  .form-group{ margin-bottom:24px; }
+  .form-group label{ display:block; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-secondary); margin-bottom:10px; }
+  .form-group input, .form-group select{
+    width:100%; background:#111; border:1px solid var(--border); border-radius:var(--radius-sm);
+    padding:15px 18px; color:var(--white); font-size:15px; transition:border-color .3s var(--ease);
+  }
+  .form-group input:focus, .form-group select:focus{ outline:none; border-color:var(--accent); }
+  .gender-row{ display:flex; gap:12px; }
+  .gender-opt{ flex:1; }
+  .gender-opt input{ display:none; }
+  .gender-opt label{
+    display:flex; align-items:center; justify-content:center; padding:15px; border:1px solid var(--border);
+    border-radius:var(--radius-sm); cursor:pointer; text-transform:none; letter-spacing:0; font-size:14px;
+    margin:0; transition:all .3s var(--ease); color:var(--white);
+  }
+  .gender-opt input:checked + label{ background:var(--accent); color:#090909; border-color:var(--accent); font-weight:600; }
+  .form-row-2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+
+  .bmi-result-card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px;
+    opacity:.4; transition:all .5s var(--ease); position:sticky; top:120px;
+  }
+  .bmi-result-card.show{ opacity:1; }
+  .bmi-gauge{ position:relative; width:220px; height:120px; margin:0 auto 20px; }
+  .bmi-gauge svg{ width:100%; height:100%; }
+  .bmi-needle{ transform-origin:110px 110px; transition:transform 1s var(--ease); }
+  .bmi-value-display{ text-align:center; }
+  .bmi-value-display .num{ font-family:var(--font-head); font-size:64px; color:var(--accent); line-height:1; }
+  .bmi-cat-badge{
+    display:inline-block; margin-top:12px; padding:8px 20px; border-radius:100px; border:1px solid;
+    font-size:12px; letter-spacing:1px; text-transform:uppercase; font-weight:600;
+  }
+  .bmi-range-note{ text-align:center; color:var(--text-secondary); font-size:13px; margin-top:14px; }
+  .bmi-stats{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:30px; }
+  .bmi-stat{ background:#111; border:1px solid var(--border); border-radius:var(--radius-sm); padding:20px; text-align:center; }
+  .bmi-stat b{ display:block; font-family:var(--font-head); font-size:28px; color:var(--accent); }
+  .bmi-stat span{ color:var(--text-secondary); font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+  .bmi-healthy-range{ text-align:center; margin-top:20px; padding-top:20px; border-top:1px solid var(--border); }
+  .bmi-healthy-range span{ color:var(--text-secondary); font-size:12px; letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:6px; }
+  .bmi-healthy-range b{ font-family:var(--font-head); font-size:24px; color:var(--white); }
+
+  .shake{ animation:shakeAnim .4s; }
+  @keyframes shakeAnim{ 0%,100%{ transform:translateX(0); } 25%{ transform:translateX(-8px); } 75%{ transform:translateX(8px); } }
+
+  @media (max-width:860px){ .bmi-wrap{ grid-template-columns:1fr; } .bmi-result-card{ position:static; } }
+</style>
+</head>
+<body>
+<div class="loader"><div class="loader-mark">GYMFIT</div><div class="loader-bar"></div></div>
+<div class="scroll-progress"></div>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">GYM<span>FIT</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="membership.html">Membership</a>
+      <a href="bmi.html">BMI</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="membership.html" class="nav-cta">Join Now</a>
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Know Your Numbers</span>
+    <h1>BMI Calculator</h1>
+    <p>Get your BMI, healthy weight range, daily calorie target, and water intake — instantly.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="bmi-wrap">
+      <form id="bmi-form" class="bmi-form-card reveal">
+        <div class="form-group">
+          <label>Gender</label>
+          <div class="gender-row">
+            <div class="gender-opt">
+              <input type="radio" id="male" name="gender" value="male" checked>
+              <label for="male">Male</label>
+            </div>
+            <div class="gender-opt">
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">Female</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Height (cm)</label>
+            <input type="number" id="height" placeholder="175" min="100" max="250" required>
+          </div>
+          <div class="form-group">
+            <label>Weight (kg)</label>
+            <input type="number" id="weight" placeholder="70" min="30" max="300" required>
+          </div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Age</label>
+            <input type="number" id="age" placeholder="28" min="10" max="100" required>
+          </div>
+          <div class="form-group">
+            <label>Activity Level</label>
+            <select id="activity">
+              <option value="sedentary">Sedentary</option>
+              <option value="light">Lightly Active</option>
+              <option value="moderate" selected>Moderately Active</option>
+              <option value="active">Very Active</option>
+              <option value="athlete">Athlete</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Calculate BMI</button>
+      </form>
+
+      <div id="bmi-result" class="bmi-result-card reveal">
+        <div class="bmi-gauge">
+          <svg viewBox="0 0 220 120">
+            <path d="M 10 110 A 100 100 0 0 1 210 110" fill="none" stroke="#2a2a2a" stroke-width="14" stroke-linecap="round"/>
+            <path d="M 10 110 A 100 100 0 0 1 68 22" fill="none" stroke="#5ec8ff" stroke-width="14" stroke-linecap="round"/>
+            <path d="M 68 22 A 100 100 0 0 1 152 22" fill="none" stroke="#7CFF3B" stroke-width="14" stroke-linecap="round"/>
+            <path d="M 152 22 A 100 100 0 0 1 190 65" fill="none" stroke="#ffcf4d" stroke-width="14" stroke-linecap="round"/>
+            <path d="M 190 65 A 100 100 0 0 1 210 110" fill="none" stroke="#ff5f5f" stroke-width="14" stroke-linecap="round"/>
+            <g id="bmi-needle" class="bmi-needle" style="transform:rotate(-90deg);">
+              <line x1="110" y1="110" x2="110" y2="25" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="110" cy="110" r="7" fill="#ffffff"/>
+            </g>
+          </svg>
+        </div>
+        <div class="bmi-value-display">
+          <div class="num" id="bmi-value">--</div>
+          <div id="bmi-category" class="bmi-cat-badge">Enter your details</div>
+          <div id="bmi-range" class="bmi-range-note">Healthy BMI range: 18.5 – 24.9</div>
+        </div>
+        <div class="bmi-stats">
+          <div class="bmi-stat"><b id="bmi-calories">--</b><span>Daily Calories</span></div>
+          <div class="bmi-stat"><b id="bmi-water">--</b><span>Water Intake</span></div>
+        </div>
+        <div class="bmi-healthy-range">
+          <span>Your Healthy Weight Range</span>
+          <b id="healthy-weight-range">-- kg</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head reveal"><div><span class="eyebrow">Reference</span><h2>BMI Categories</h2></div></div>
+    <div class="counters reveal-stagger">
+      <div class="counter-item"><div class="counter-num" style="color:#5ec8ff;">&lt;18.5</div><div class="counter-label">Underweight</div></div>
+      <div class="counter-item"><div class="counter-num" style="color:#7CFF3B;">18.5–24.9</div><div class="counter-label">Healthy</div></div>
+      <div class="counter-item"><div class="counter-num" style="color:#ffcf4d;">25–29.9</div><div class="counter-label">Overweight</div></div>
+      <div class="counter-item"><div class="counter-num" style="color:#ff5f5f;">30+</div><div class="counter-label">Obese</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="join-cta">
+  <div class="container reveal">
+    <h2 style="font-size:clamp(38px,6vw,80px);">TURN YOUR<br>NUMBERS INTO ACTION.</h2>
+    <p>Get a program built around your results with a free coach consultation.</p>
+    <a href="contact.html" class="btn btn-primary">Talk to a Coach</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GYM<span>FIT</span></div>
+        <p class="footer-about">A premium strength & conditioning club built for people who take their training seriously.</p>
+        <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tw</a><a href="#">yt</a></div>
+      </div>
+      <div class="footer-col"><h5>Explore</h5><ul><li><a href="programs.html">Programs</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="membership.html">Membership</a></li><li><a href="nutrition.html">Nutrition</a></li></ul></div>
+      <div class="footer-col"><h5>Tools</h5><ul><li><a href="bmi.html">BMI Calculator</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li>123 Fitness Ave, Indore, MP</li><li>+91 98765 43210</li><li>hello@gymfit.com</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 GymFit. All rights reserved.</span><span>Designed for those who don't skip leg day.</span></div>
+  </div>
+</footer>
+
+<div class="back-top">↑</div>
+<script src="js/script.js"></script>
+<script src="js/bmi.js"></script>
+</body>
+</html>
