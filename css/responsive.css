@@ -1,0 +1,181 @@
+/* =========================================================
+   RESPONSIVE.CSS
+   Mobile & tablet adaptations only — desktop (1024px+) is
+   untouched and inherits everything from style.css.
+
+   Breakpoints:
+     Desktop : 1024px and up  (no overrides here)
+     Tablet  : 768px – 1023px
+     Mobile  : 320px – 767px
+       - refinements at 479px and 359px for small phones
+   ========================================================= */
+
+/* ---------- Global safety net (all sizes) ---------- */
+html, body{ max-width:100%; overflow-x:hidden; }
+img, video, iframe{ max-width:100%; height:auto; }
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Touch-friendly scrolling for horizontal carousels */
+.equip-scroll{ -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity; }
+.equip-card{ scroll-snap-align:start; }
+.bento-gallery, .insta-strip{ -webkit-overflow-scrolling:touch; }
+
+/* =========================================================
+   TABLET — 768px to 1023px
+   ========================================================= */
+@media (max-width:1023px){
+  .hero-inner{ grid-template-columns:1fr .9fr; gap:16px; }
+  .hero-title{ font-size:clamp(44px,7vw,84px); }
+  .hero-card{ padding:13px 16px; }
+  .hero-card b{ font-size:22px; }
+
+  .programs-bento{ grid-template-columns:repeat(2,1fr); }
+  .p-card.big{ grid-column:span 2; grid-row:span 1; }
+  .trainers-row{ grid-template-columns:repeat(2,1fr) !important; }
+  .transform-grid{ grid-template-columns:repeat(2,1fr); }
+  .plans-row{ grid-template-columns:repeat(1,1fr); max-width:440px; margin:0 auto; }
+  .testi-row{ grid-template-columns:repeat(1,1fr); }
+  .why-grid{ grid-template-columns:1fr; gap:40px; }
+  .why-visual{ order:-1; aspect-ratio:16/9; }
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+  .insta-strip{ grid-template-columns:repeat(3,1fr); }
+  .bento-gallery{ grid-template-columns:repeat(4,1fr); }
+  .g8,.g9{ grid-column:span 4; }
+
+  .section{ padding:110px 0; }
+  .counters{ grid-template-columns:repeat(2,1fr); }
+
+  /* touch devices can't hover — always reveal social icons */
+  .trainer-social{ opacity:1; transform:translateX(0); }
+
+  body .page-hero{ padding:170px 0 70px; }
+}
+
+/* =========================================================
+   MOBILE — up to 767px
+   ========================================================= */
+@media (max-width:767px){
+  .container{ padding:0 20px; }
+
+  /* ---------- Navbar / hamburger menu ---------- */
+  .nav-links{
+    position:fixed; top:0; right:-100%; width:78%; max-width:320px; height:100vh;
+    height:100dvh; background:rgba(9,9,9,.98); backdrop-filter:blur(20px); flex-direction:column;
+    justify-content:center; gap:30px; transition:right .5s var(--ease); border-left:1px solid var(--border);
+    z-index:1000; padding:40px 30px; overflow-y:auto;
+  }
+  .nav-links.open{ right:0; }
+  .nav-links a{ font-size:15px; }
+
+  .nav-toggle{
+    display:flex; padding:14px; margin:-14px; align-items:center; justify-content:center;
+  }
+  .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  /* lock body scroll while the mobile menu is open */
+  body.nav-open{ overflow:hidden; height:100vh; }
+
+  .nav-cta{ padding:10px 20px; font-size:12px; }
+
+  /* ---------- Hero ---------- */
+  .hero{ height:auto; min-height:100vh; min-height:100dvh; padding:140px 0 60px; }
+  .hero-inner{ grid-template-columns:1fr; text-align:center; gap:44px; }
+  .hero-copy{ display:flex; flex-direction:column; align-items:center; }
+  .hero-desc{ margin-left:auto; margin-right:auto; }
+  .hero-actions{ justify-content:center; width:100%; }
+  .hero-actions .btn{ flex:1 1 auto; min-width:150px; }
+  .hero-visual{ height:52vh; min-height:340px; width:100%; }
+  .hero-athlete img{ height:100%; }
+  .hero-bgwords{ align-items:center; opacity:.5; }
+  .hero-card.card-1{ left:2%; }
+  .hero-card.card-3{ right:2%; }
+
+  /* ---------- Standard sections ---------- */
+  .section{ padding:80px 0; }
+  .section-head{ flex-direction:column; align-items:flex-start; gap:18px; margin-bottom:46px; }
+  .section-head .btn{ align-self:flex-start; }
+
+  body .page-hero{ padding:130px 0 56px; }
+  .page-hero p{ font-size:15px; }
+
+  /* ---------- Grids -> single column ---------- */
+  .programs-bento, .p-card.big{ grid-template-columns:1fr; grid-column:span 1 !important; grid-row:span 1 !important; }
+  .programs-bento{ grid-auto-rows:240px; }
+  .trainers-row{ grid-template-columns:1fr !important; }
+  .transform-grid{ grid-template-columns:1fr; }
+  .why-list{ gap:0; }
+  .bento-gallery{ grid-template-columns:repeat(2,1fr); grid-auto-rows:130px; }
+  .g1,.g4,.g7,.g8,.g9{ grid-column:span 2 !important; }
+  .insta-strip{ grid-template-columns:repeat(2,1fr); }
+  .footer-grid{ grid-template-columns:1fr; gap:36px; }
+  .footer-bottom{ flex-direction:column; text-align:center; gap:8px; }
+  .plan-price{ font-size:44px; }
+  .join-cta{ padding:100px 0; }
+  .equip-card{ min-width:250px; }
+  .back-top{ width:46px; height:46px; bottom:18px; right:18px; }
+
+  .counters{ grid-template-columns:repeat(2,1fr); }
+  .counter-item{ padding:40px 18px; }
+
+  /* ---------- Touch targets ---------- */
+  .btn{ min-height:44px; }
+  .trainer-btn, .footer-social a{ min-height:44px; }
+  .footer-social a{ width:44px; height:44px; }
+  .acc-head{ min-height:44px; }
+
+  /* ---------- Forms (shared across bmi/contact pages) ---------- */
+  body .form-group input,
+  body .form-group select,
+  body .form-group textarea{ font-size:16px; padding:14px 16px; }
+  body .form-row-2{ grid-template-columns:1fr; gap:14px; }
+  body .gender-row{ flex-direction:row; }
+  body .bmi-form-card, body .contact-form-card{ padding:28px 22px; }
+}
+
+/* =========================================================
+   SMALL MOBILE — up to 479px
+   ========================================================= */
+@media (max-width:479px){
+  .hero-title{ font-size:15vw; }
+  .hero-visual{ height:44vh; min-height:300px; }
+  .hero-card{ padding:12px 16px; }
+  .hero-card b{ font-size:22px; }
+  .hero-card.card-1{ top:4%; }
+  .hero-card.card-2{ bottom:10%; }
+  .hero-actions{ flex-direction:column; }
+  .hero-actions .btn{ width:100%; }
+
+  body .page-hero{ padding:120px 0 46px; }
+  body .page-hero h1{ font-size:clamp(38px,13vw,64px); }
+
+  .counters{ grid-template-columns:1fr 1fr; }
+  .counter-item{ padding:32px 14px; }
+  .counter-num{ font-size:clamp(36px,11vw,54px); }
+
+  .btn{ padding:14px 24px; font-size:12px; min-height:44px; }
+  .join-cta h2{ font-size:clamp(38px,11vw,60px); }
+  .join-cta{ padding:80px 0; }
+
+  .footer-logo{ font-size:28px; }
+  .plan-card{ padding:30px 24px; }
+  .testi-card{ padding:24px; }
+}
+
+/* =========================================================
+   EXTRA-SMALL PHONES — up to 359px (e.g. small iPhone SE)
+   ========================================================= */
+@media (max-width:359px){
+  .container{ padding:0 16px; }
+  .btn{ padding:13px 18px; font-size:11px; }
+  .hero-title{ font-size:16vw; }
+  .eyebrow{ font-size:11px; letter-spacing:2px; }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}

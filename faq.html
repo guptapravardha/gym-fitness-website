@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ | GymFit</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+  .faq-cols{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .flip-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .flip-card{ perspective:1200px; height:180px; cursor:pointer; }
+  .flip-card-inner{ position:relative; width:100%; height:100%; transition:transform .6s var(--ease); transform-style:preserve-3d; }
+  .flip-card.flipped .flip-card-inner{ transform:rotateY(180deg); }
+  .flip-face{ position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius-md); border:1px solid var(--border); padding:26px; display:flex; flex-direction:column; justify-content:center; }
+  .flip-front{ background:var(--card); }
+  .flip-front span{ font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#ff5f5f; margin-bottom:8px; }
+  .flip-back{ background:linear-gradient(160deg,#161f10,var(--card)); transform:rotateY(180deg); border-color:rgba(124,255,59,.3); }
+  .flip-back span{ font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .flip-face h4{ font-family:var(--font-body); font-weight:600; font-size:15px; line-height:1.5; }
+  @media (max-width:860px){ .faq-cols{ grid-template-columns:1fr; } .flip-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="loader"><div class="loader-mark">GYMFIT</div><div class="loader-bar"></div></div>
+<div class="scroll-progress"></div>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">GYM<span>FIT</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="membership.html">Membership</a>
+      <a href="bmi.html">BMI</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="membership.html" class="nav-cta">Join Now</a>
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Got Questions?</span>
+    <h1>FAQ</h1>
+    <p>Everything about training, membership, recovery, and gym etiquette — answered.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container faq-cols">
+    <div>
+      <h3 style="font-size:26px;font-family:var(--font-body);font-weight:600;margin-bottom:24px;">Membership & Access</h3>
+      <div class="accordion reveal">
+        <div class="acc-item open">
+          <div class="acc-head"><h4>Can I cancel anytime?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body" style="max-height:200px;"><div class="acc-body-in">Yes, all plans are month-to-month with no long-term contract required.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-head"><h4>Is there a joining fee?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body"><div class="acc-body-in">No joining fee for Elite and Pro plans. Basic has a one-time ₹500 setup fee.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-head"><h4>What are the operating hours?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body"><div class="acc-body-in">Pro and Elite members get 24/7 access. Basic members can train 5am–11pm daily.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-head"><h4>Can I bring a guest?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body"><div class="acc-body-in">Pro members get 2 guest passes per month. Other plans can purchase day passes at the front desk.</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:26px;font-family:var(--font-body);font-weight:600;margin-bottom:24px;">Training & Recovery</h3>
+      <div class="accordion reveal">
+        <div class="acc-item open">
+          <div class="acc-head"><h4>How often should I train per week?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body" style="max-height:200px;"><div class="acc-body-in">Most members see best results training 4–5 days a week with at least one full rest day.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-head"><h4>Do I need to stretch before lifting?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body"><div class="acc-body-in">Dynamic warm-ups before, static stretching after — this reduces injury risk and improves range of motion.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-head"><h4>How long until I see results?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body"><div class="acc-body-in">Most members notice strength gains within 3–4 weeks and visible changes within 8–12 weeks, consistency depending.</div></div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-head"><h4>Should I re-rack my weights?</h4><div class="acc-icon"></div></div>
+          <div class="acc-body"><div class="acc-body-in">Always. Re-racking weights is standard gym etiquette and keeps the floor safe for everyone.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head reveal"><div><span class="eyebrow">Click To Flip</span><h2>Myth vs Fact</h2></div></div>
+    <div class="flip-grid reveal-stagger">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span>Myth</span><h4>Lifting weights makes women bulky.</h4></div>
+          <div class="flip-face flip-back"><span>Fact</span><h4>Building visible bulk requires specific high-volume training and surplus eating — strength training alone leads to lean, toned muscle.</h4></div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span>Myth</span><h4>You need to train every day to see results.</h4></div>
+          <div class="flip-face flip-back"><span>Fact</span><h4>Rest days are when muscle actually repairs and grows — 4–5 quality sessions beat 7 exhausted ones.</h4></div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span>Myth</span><h4>Cardio kills muscle gains.</h4></div>
+          <div class="flip-face flip-back"><span>Fact</span><h4>Moderate cardio supports recovery and heart health without meaningfully affecting muscle growth when protein intake is sufficient.</h4></div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front"><span>Myth</span><h4>You can spot-reduce fat in one area.</h4></div>
+          <div class="flip-face flip-back"><span>Fact</span><h4>Fat loss happens across the whole body based on genetics and overall calorie deficit — not from targeting one muscle group.</h4></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="join-cta">
+  <div class="container reveal">
+    <h2 style="font-size:clamp(38px,6vw,80px);">STILL HAVE<br>QUESTIONS?</h2>
+    <p>Our team is one message away.</p>
+    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GYM<span>FIT</span></div>
+        <p class="footer-about">A premium strength & conditioning club built for people who take their training seriously.</p>
+        <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tw</a><a href="#">yt</a></div>
+      </div>
+      <div class="footer-col"><h5>Explore</h5><ul><li><a href="programs.html">Programs</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="membership.html">Membership</a></li><li><a href="nutrition.html">Nutrition</a></li></ul></div>
+      <div class="footer-col"><h5>Tools</h5><ul><li><a href="bmi.html">BMI Calculator</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li>123 Fitness Ave, Indore, MP</li><li>+91 98765 43210</li><li>hello@gymfit.com</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 GymFit. All rights reserved.</span><span>Designed for those who don't skip leg day.</span></div>
+  </div>
+</footer>
+
+<div class="back-top">↑</div>
+<script src="js/script.js"></script>
+</body>
+</html>

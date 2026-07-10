@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrition | GymFit</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+  .filter-bar{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:50px; }
+  .filter-btn{ padding:11px 22px; border:1px solid var(--border); border-radius:100px; font-size:13px; letter-spacing:1px; text-transform:uppercase; transition:all .3s var(--ease); }
+  .filter-btn.active{ background:var(--accent); color:#090909; border-color:var(--accent); font-weight:600; }
+  .nutri-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .nutri-card{ perspective:1200px; height:280px; cursor:pointer; }
+  .nutri-card-inner{ position:relative; width:100%; height:100%; transition:transform .6s var(--ease); transform-style:preserve-3d; }
+  .nutri-card:hover .nutri-card-inner, .nutri-card.flipped .nutri-card-inner{ transform:rotateY(180deg); }
+  .nutri-face{ position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border); }
+
+  .nutri-front img{ width:100%; height:100%; object-fit:cover; }
+  .nutri-front-label{ position:absolute; bottom:0; left:0; right:0; padding:18px; background:linear-gradient(180deg,transparent,rgba(9,9,9,.9)); }
+  .nutri-front-label h4{ font-family:var(--font-body); font-weight:600; font-size:17px; }
+  .nutri-back{ background:var(--card); transform:rotateY(180deg); padding:24px; display:flex; flex-direction:column; justify-content:center; }
+  .nutri-back h4{ font-family:var(--font-body); font-weight:600; font-size:16px; margin-bottom:14px; }
+  .nutri-fact{ display:flex; justify-content:space-between; font-size:13px; color:var(--text-secondary); padding:8px 0; border-bottom:1px solid var(--border); }
+  .nutri-fact b{ color:var(--accent); }
+  @media (max-width:1100px){ .nutri-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .nutri-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="loader"><div class="loader-mark">GYMFIT</div><div class="loader-bar"></div></div>
+<div class="scroll-progress"></div>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">GYM<span>FIT</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="programs.html">Programs</a>
+      <a href="trainers.html">Trainers</a>
+      <a href="membership.html">Membership</a>
+      <a href="bmi.html">BMI</a>
+      <a href="nutrition.html">Nutrition</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="membership.html" class="nav-cta">Join Now</a>
+    <div class="nav-toggle"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Fuel The Machine</span>
+    <h1>Nutrition Guide</h1>
+    <p>Tap or hover any card to flip it and see the full nutrition breakdown. Filter by goal below.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="protein">Protein Foods</button>
+      <button class="filter-btn" data-filter="carbs">Healthy Carbs</button>
+      <button class="filter-btn" data-filter="fats">Healthy Fats</button>
+      <button class="filter-btn" data-filter="supplements">Supplements</button>
+      <button class="filter-btn" data-filter="gain">Muscle Gain</button>
+      <button class="filter-btn" data-filter="loss">Weight Loss</button>
+    </div>
+
+    <div class="nutri-grid reveal-stagger">
+      <div class="nutri-card" data-cat="protein">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=400&q=80" alt="Chicken breast" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Chicken Breast</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Chicken Breast (100g)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>165 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>31g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>0g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>3.6g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="protein">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="https://images.unsplash.com/photo-1518492104633-130d0cc84637?auto=format&fit=crop&w=400&q=80" alt="Eggs" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Whole Eggs</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Whole Eggs (2 large)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>143 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>13g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>1g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>10g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="carbs">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=400&q=80" alt="Brown rice" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Brown Rice</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Brown Rice (1 cup cooked)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>216 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>5g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>45g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>1.8g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="carbs">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 131950.png" alt="Sweet potato" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Sweet Potato</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Sweet Potato (1 medium)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>112 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>2g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>26g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>0.1g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="fats">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=400&q=80" alt="Avocado" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Avocado</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Avocado (1 whole)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>240 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>3g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>13g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>22g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="fats">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 132011.png" alt="Almonds" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Almonds</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Almonds (28g / handful)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>164 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>6g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>6g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>14g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="supplements gain">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 132035.png" alt="Whey protein" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Whey Protein</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Whey Protein (1 scoop)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>120 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>24g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>3g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>1.5g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="gain">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 132304.png" alt="Salmon" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Salmon</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Salmon (100g)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>208 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>20g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>0g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>13g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="loss">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 132340.png" alt="Salad greens" loading="lazy" decoding="async"></img><div class="nutri-front-label"><h4>Leafy Greens</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Mixed Greens (2 cups)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>18 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>1.6g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>3.4g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>0.2g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="loss">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 132403.png" alt="Greek yogurt" loading="lazy" decoding="async"></img><div class="nutri-front-label"><h4>Greek Yogurt</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Greek Yogurt (1 cup)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>146 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>20g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>8g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>4g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="supplements">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 132420.png" alt="Creatine" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Creatine</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Creatine Monohydrate (5g)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>0 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>0g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>0g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>0g</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="nutri-card" data-cat="carbs gain">
+        <div class="nutri-card-inner">
+          <div class="nutri-face nutri-front"><img src="{css,js,images}/Screenshot 2026-07-10 132443.png" alt="Oats" loading="lazy" decoding="async"><div class="nutri-front-label"><h4>Oats</h4></div></div>
+          <div class="nutri-face nutri-back">
+            <h4>Rolled Oats (1 cup dry)</h4>
+            <div class="nutri-fact"><span>Calories</span><b>307 kcal</b></div>
+            <div class="nutri-fact"><span>Protein</span><b>11g</b></div>
+            <div class="nutri-fact"><span>Carbs</span><b>55g</b></div>
+            <div class="nutri-fact"><span>Fat</span><b>5g</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <div class="section-head reveal"><div><span class="eyebrow">Plan Ahead</span><h2>Sample Meal Planner</h2></div></div>
+    <div class="trainers-row reveal-stagger" style="grid-template-columns:repeat(4,1fr);">
+      <div class="trainer-card lift"><div class="trainer-body"><h3>Breakfast</h3><p class="trainer-exp">4 eggs, oats, 1 banana — ~520 kcal, 32g protein</p></div></div>
+      <div class="trainer-card lift"><div class="trainer-body"><h3>Lunch</h3><p class="trainer-exp">Chicken breast, brown rice, greens — ~610 kcal, 48g protein</p></div></div>
+      <div class="trainer-card lift"><div class="trainer-body"><h3>Snack</h3><p class="trainer-exp">Greek yogurt, almonds — ~310 kcal, 26g protein</p></div></div>
+      <div class="trainer-card lift"><div class="trainer-body"><h3>Dinner</h3><p class="trainer-exp">Salmon, sweet potato, avocado — ~560 kcal, 35g protein</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="join-cta">
+  <div class="container reveal">
+    <h2 style="font-size:clamp(38px,6vw,80px);">EAT RIGHT,<br>TRAIN HARDER.</h2>
+    <p>Book a 1-on-1 nutrition consultation with our in-house specialist.</p>
+    <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">GYM<span>FIT</span></div>
+        <p class="footer-about">A premium strength & conditioning club built for people who take their training seriously.</p>
+        <div class="footer-social"><a href="#">f</a><a href="#">ig</a><a href="#">tw</a><a href="#">yt</a></div>
+      </div>
+      <div class="footer-col"><h5>Explore</h5><ul><li><a href="programs.html">Programs</a></li><li><a href="trainers.html">Trainers</a></li><li><a href="membership.html">Membership</a></li><li><a href="nutrition.html">Nutrition</a></li></ul></div>
+      <div class="footer-col"><h5>Tools</h5><ul><li><a href="bmi.html">BMI Calculator</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li>123 Fitness Ave, Indore, MP</li><li>+91 98765 43210</li><li>hello@gymfit.com</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 GymFit. All rights reserved.</span><span>Designed for those who don't skip leg day.</span></div>
+  </div>
+</footer>
+
+<div class="back-top">↑</div>
+<script src="js/script.js"></script>
+</body>
+</html>
