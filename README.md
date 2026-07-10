@@ -31,8 +31,11 @@ GymFit/
 
 ## Homepage Cinematic Experience
 The hero section (`.cinema`) uses GSAP + ScrollTrigger to pin the athlete image in the viewport while 6 scenes scrub past behind/around him — lighting shifts, floating stat cards, and text reveals are all scrubbed directly to scroll position, not autoplay. GSAP is loaded via CDN (`cdnjs.cloudflare.com`), so an internet connection is required for the pinned scroll effect; every other animation (reveals, marquee, accordions, counters, flip cards, before/after sliders) runs on vanilla JS and works fully offline.
+<<<<<<< HEAD
 
 ## Notes
 - All imagery is pulled live from Unsplash's CDN — swap any `<img src="...">` for local files in `/images` if you need an offline build.
 - The "transparent athlete PNG" effect is approximated with cropped photography + drop-shadow, since royalty-free true-alpha cutouts aren't available from stock sources. For production, replace `cinema-athlete img` with a real PNG cutout for a cleaner composite.
 - No inline JS — all logic lives in `/js`. No Bootstrap/Tailwind/React/Vue/jQuery anywhere in the codebase.
+=======
+>>>>>>> 9cf405b797351922914b5cfdfef4da68e3b542da
